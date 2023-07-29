@@ -1,0 +1,13 @@
+db=> rumshadb
+category=>
+Summer Plants
+Winter Plants
+Indoor Plants
+Outdoor Plants
+flowers
+tools
+fertilizers
+pots
+seeds
+// remaining quantity in the stock
+SELECT p.id, p.title, p.quantity - COALESCE(s.total_sale, 0) AS remaining_quantity FROM plant_table p LEFT JOIN ( SELECT product, SUM(qty) AS total_sale FROM sale_table GROUP BY product ) s ON p.id = s.product
